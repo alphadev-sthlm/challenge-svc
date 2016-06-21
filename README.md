@@ -1,5 +1,5 @@
 
-# Service startup
+# Service startup [![Build Status](https://travis-ci.org/alphadev-sthlm/challenge-svc.png)](https://travis-ci.org/alphadev-sthlm/challenge-svc)
 
 mvn spring-boot:run
 
