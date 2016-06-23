@@ -13,7 +13,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -40,8 +39,7 @@ public class ChallengeResource {
 	public BufferedImage challenge(
 			@PathParam("challenge") Challenge challenge,
 			@FormDataParam("json") List<FaceAndScores> faceAndScores,
-			@FormDataParam("file") InputStream stream,
-			@FormDataParam("file") FormDataContentDisposition fileDisposition) throws IOException {
+			@FormDataParam("file") InputStream stream ) throws IOException {
 
 		FaceRectangle winner = challengeService.evaluate(challenge, faceAndScores);
 		BufferedImage image = ImageIO.read( stream );
