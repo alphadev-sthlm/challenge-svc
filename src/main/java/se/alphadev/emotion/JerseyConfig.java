@@ -1,5 +1,6 @@
 package se.alphadev.emotion;
 
+import org.glassfish.jersey.filter.LoggingFilter;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ public class JerseyConfig extends ResourceConfig {
 	public JerseyConfig() {
 		register( ChallengeResource.class );
 		register( MultiPartFeature.class );
+		register( LoggingFilter.class );
 //		register( JacksonFeature.class );
 	}
 	

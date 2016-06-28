@@ -14,6 +14,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +28,8 @@ import se.alphadev.emotion.core.ImageDecoratorClient;
 @Component
 @Path("/challenge")
 public class ChallengeResource {
+	
+	private Logger log = LoggerFactory.getLogger( ChallengeResource.class );
 	
 	@Autowired
 	private ChallengeService challengeService;
@@ -41,7 +45,10 @@ public class ChallengeResource {
 			@FormDataParam("json") List<FaceAndScores> faceAndScores,
 			@FormDataParam("file") InputStream stream ) throws IOException {
 
+		log.info("Challenge {}, file {}, json {}", challenge, stream, faceAndScores);
+		
 		FaceRectangle winner = challengeService.evaluate(challenge, faceAndScores);
+		
 		BufferedImage image = ImageIO.read( stream );
 		image = imageDecoratorClient.decorate( winner, image, challenge );
 
